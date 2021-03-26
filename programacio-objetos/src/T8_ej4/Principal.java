@@ -1,5 +1,13 @@
 package T8_ej4;
 
+/**
+*
+* @autor: Jorge Pomo Ramón
+* Ejercicio 4 Tema 8 – Herencia
+* 1r DAM-PROG
+* 
+*/
+
 import java.util.regex.Pattern;
 
 public class Principal {

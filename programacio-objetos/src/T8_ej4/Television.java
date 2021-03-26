@@ -1,5 +1,13 @@
 package T8_ej4;
 
+/**
+*
+* @autor: Jorge Pomo Ramón
+* Ejercicio 4 Tema 8 – Herencia
+* 1r DAM-PROG
+* 
+*/
+
 public class Television extends Electrodomesticos {
 
 	// Atributos
