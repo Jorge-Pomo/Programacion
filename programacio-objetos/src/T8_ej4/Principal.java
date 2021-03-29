@@ -53,6 +53,20 @@ public class Principal {
 			}
 		}
 		 
+		 //Solucio amb instanceof
+//		 for (int i = 0; i < elect.length; i++) {
+//			if(elect[i] instanceof Lavadora) {
+//				sumL = sumL + elect[i].precioFinal();
+//			}else {
+//				if(elect[i] instanceof Television) {
+//					sumT = sumT + elect[i].precioFinal();
+//				}else {
+//					sumE = sumE + elect[i].precioFinal();
+//				}
+//			} 
+//			 
+//		}
+		 
 		 sumE = sumE + sumL + sumT;
 		 
 		 System.out.printf("La suma de Electrodomesticos es de = " + sumE + "\nLa suma de Television es de = " + sumT + "\nLa suma de Lavadoras es de = " + sumL);
