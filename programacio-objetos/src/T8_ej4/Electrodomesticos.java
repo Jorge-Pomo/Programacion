@@ -1,10 +1,12 @@
 package T8_ej4;
 
 /**
-*
-* @autor: Jorge Pomo Ramón
 * Ejercicio 4 Tema 8 – Herencia
 * 1r DAM-PROG
+* 
+* @author Jorge Pomo Ramón
+* 
+* @since 2021-04-14 
 * 
 */
 
@@ -19,6 +21,16 @@ public class Electrodomesticos {
 	private char consumoElectrico;
 
 	// Constructores
+	
+	/**
+	 * Constructor con 4 parametros
+	 * Crea un electrodomestico con su color, consumo, precio y peso por defecto
+	 * 
+	 * @param color indica el color por defecto (blanco)
+	 * @param consumoElectrico indica el consumo por defecto (F)
+	 * @param precioBase indica el precio por defecto (100)
+	 * @param peso indica el peso por defecto (5)
+	 */
 	public Electrodomesticos() {
 		color = "blanco";
 		consumoElectrico = 'F';
@@ -26,6 +38,12 @@ public class Electrodomesticos {
 		peso = 5;
 	}
 
+	
+	/**
+	 * Constructor que inicializa el precioBase y el peso
+	 * @param precioBase inicializa el precio por defecto
+	 * @param peso inicializa el peso por defecto
+	 */
 	public Electrodomesticos(int precioBase, int peso) {
 		color = "blanco";
 		consumoElectrico = 'F';
@@ -33,6 +51,13 @@ public class Electrodomesticos {
 		this.peso = peso;
 	}
 
+	/**
+	 * El usuario nicializa los atributos
+	 * @param precioBase  El usuario indica el precio base
+	 * @param peso El usuario indica el peso
+	 * @param color El usuario indica el color
+	 * @param consumoElectrico El usuario indica el consumo electrico
+	 */
 	public Electrodomesticos(int precioBase, int peso, String color, char consumoElectrico) {
 		this.color = color;
 		this.consumoElectrico = consumoElectrico;
@@ -74,6 +99,11 @@ public class Electrodomesticos {
 	}
 
 	// Métodos
+	/**
+	 * Comprueba si el valor del consumo es valido, si no lo pone por defecto
+	 * 
+	 * @see ConsumoElectrico
+	 */
 	private void comprobarConsumo() {
 		String letras = "ABCDEF";
 		char[] letra = letras.toCharArray();
@@ -83,6 +113,10 @@ public class Electrodomesticos {
 		}
 	}
 
+	/**
+	 * Comprueba si el cloro es valido, si no lo pone por defecto.
+	 * @see Color
+	 */
 	private void comprobarColor() {
 		String[] colores = { "blanco", "negro", "rojo", "azul", "gris" };
 		color.toLowerCase();
@@ -92,6 +126,28 @@ public class Electrodomesticos {
 		}
 	}
 
+	/**
+	 * Devuelve el precio final del electrodomestico
+	 * 
+	 * Segun el consumo que tenga
+	 * @return
+	 * <ul>
+	 * 	<li>A = 100</li>
+	 * 	<li>B = 80</li>
+	 *  <li>C = 60</li>
+	 *  <li>D = 50</li>
+	 *  <li>E = 30</li>
+	 *  <li>F = 10</li>
+	 * </ul>
+	 * 
+	 * Segun el peso que tenga
+	 * <ul>
+	 * 	<li>(<= 19) = 10</li>
+	 * 	<li>(>=20 && <= 49) = 50</li>
+	 * 	<li>(>= 50 && <= 79) = 80</li>
+	 * 	<li>(> 79) = 100</li>
+	 * </ul>
+	 */
 	public double precioFinal() {
 		double resu = 0;
 
