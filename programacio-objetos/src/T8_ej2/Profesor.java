@@ -8,7 +8,7 @@ public class Profesor extends Persona {
 	private String horarioTutorias;
 
 	// Constructor
-	Profesor(String nombre, int edad, Coche c, String despacho, String horarioTutorias) {
+	public Profesor(String nombre, int edad, Coche c, String despacho, String horarioTutorias) {
 		super(nombre, edad, c);
 		this.despacho = despacho;
 		this.horarioTutorias = horarioTutorias;
