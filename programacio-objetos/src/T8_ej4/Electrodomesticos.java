@@ -60,7 +60,9 @@ public class Electrodomesticos {
 	 */
 	public Electrodomesticos(int precioBase, int peso, String color, char consumoElectrico) {
 		this.color = color;
+		comprobarColor();
 		this.consumoElectrico = consumoElectrico;
+		comprobarConsumo();
 		this.precioBase = precioBase;
 		this.peso = peso;
 	}
@@ -108,7 +110,7 @@ public class Electrodomesticos {
 		String letras = "ABCDEF";
 		char[] letra = letras.toCharArray();
 
-		if (Arrays.asList(letra).contains(this.consumoElectrico) == false) {
+		if (Arrays.asList(letra).contains(this.consumoElectrico) != false) {
 			consumoElectrico = 'F';
 		}
 	}
@@ -149,7 +151,7 @@ public class Electrodomesticos {
 	 * </ul>
 	 */
 	public double precioFinal() {
-		double resu = 0;
+		double resu = precioBase;
 
 		switch (consumoElectrico) {
 		case 'A':
