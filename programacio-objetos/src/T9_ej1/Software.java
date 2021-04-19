@@ -42,7 +42,7 @@ public class Software extends Producto {
 		}
 
 		if(tipo.equals("ProgramaJuegos")) {
-			resu = 5/100 + resu;
+			resu = (20 * resu) / 100;
 		}
 
 			return resu;

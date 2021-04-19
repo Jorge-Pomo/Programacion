@@ -42,7 +42,7 @@ public class Hardware extends Producto {
 		}
 		
 		if(periferico == true) {
-			resu = 10 / 100 + resu;
+			resu = (10 * resu) / 100;
 		}
 		
 		return resu;
