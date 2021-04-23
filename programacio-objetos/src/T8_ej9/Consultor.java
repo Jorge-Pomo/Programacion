@@ -1,11 +1,15 @@
 package T8_ej9;
 
+import java.text.DecimalFormat;
+
 public class Consultor extends Trabajador {
 
 	// Atributos
 	private int horas;
 	private int tarifa;
 
+	DecimalFormat formato1 = new DecimalFormat("#.00");
+	
 	// Constructores
 	public Consultor() {
 
@@ -42,6 +46,6 @@ public class Consultor extends Trabajador {
 	
 	@Override
 	public String toString() {
-		return "Consultor " + super.toString() + " . Salario:" + calcularPaga() + " €";
+		return "Consultor " + super.toString() + " . Salario:" + formato1.format(calcularPaga()) + " €";
 	}
 }
