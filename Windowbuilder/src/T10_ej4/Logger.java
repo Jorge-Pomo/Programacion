@@ -27,12 +27,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Logger extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUser;
 	private JPasswordField passwordField;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -91,25 +94,29 @@ public class Logger extends JFrame {
 		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
+				//Conectar a BBDD
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
+					
+					//Creamos conexion a una BBDD mysql, que esta en localhost, su nombre es 'b_login', usuario 'root' y contraseña ""
 					Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/b_login", "root", "");
 
+					//Creamos la variable 'Statment' para diriguir las consultas a la bbdd con la que nos hemos conectado
+					//Con 's.executeQuery' hacemos la consulta JQuery
 					Statement s = conexion.createStatement();
 					ResultSet rs = s.executeQuery("select * from log where usuario='"+txtUser.getText()+"' AND Contraseña='"+passwordField.getPassword()+"';");
 				
+					//Si la consulta funciona, el valor del campo 'txtUser', se cambiara a 'SI'
 					txtUser.setText("SI");
+					
+					rs.getArray("usuario");
+					
+					//Cerramos la 
+					conexion.close();
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				}
-				
-
-				
-				
-				
-				
-				
 				
 				
 				// if(txtUser.getText().equals("admin") &&
@@ -138,32 +145,63 @@ public class Logger extends JFrame {
 				passwordField.setEchoChar('*');
 			}
 		});
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"pepe", "martinez", "30"},
+				{"pepe", "martinez", "30"},
+			},
+			new String[] {
+				"Nombre", "Apellidos", "Edad"
+			}
+		));
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup()
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(24)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup().addComponent(lblPassword)
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addComponent(passwordField, 130, 130, 130)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnMostrar))
-										.addGroup(gl_contentPane.createSequentialGroup().addComponent(lblUser)
-												.addGap(39).addComponent(txtUser, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_contentPane.createSequentialGroup().addGap(151).addComponent(btnLogin)))
-				.addContainerGap(75, Short.MAX_VALUE)));
-		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPane
-				.createSequentialGroup().addGap(26)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblUser).addComponent(
-						txtUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(31)
-				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE).addComponent(lblPassword)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(24)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblPassword)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(passwordField, 130, 130, 130)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnMostrar))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblUser)
+							.addGap(39)
+							.addComponent(txtUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(135, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(57)
+					.addComponent(btnLogin)
+					.addPreferredGap(ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+					.addGap(38))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(26)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblUser)
+						.addComponent(txtUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(31)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPassword)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnMostrar))
-				.addGap(62).addComponent(btnLogin).addContainerGap(69, Short.MAX_VALUE)));
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(51)
+							.addComponent(btnLogin))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addComponent(table, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(44, Short.MAX_VALUE))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
